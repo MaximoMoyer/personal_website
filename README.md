@@ -11,15 +11,15 @@ they will be shown an image of "a graffiti gorilla" in the style of Banksy (a fa
 <img width="1440" alt="Screen Shot 2023-08-21 at 8 07 27 PM" src="https://github.com/MaximoMoyer/personal_website/assets/41522480/16649423-963b-4fdb-8f99-95449b12c01e">
 
 # Stack:
-Flask (web app)
-bs4 (scraping)
-OpenAI (embeddings)
-StabilityAI (image creation)
-Webflow (V1 Bone structure of site and animation on loading page)
+- Flask (web app)
+- bs4 (scraping)
+- OpenAI (embeddings)
+- StabilityAI (image creation)
+- Webflow (V1 Bone structure of site and animation on loading page)
 
 # Cool Features/Functionality
 
-  ### Adding Artist
+  ### Adding Artists
 To add an artist to the database, all you must do is add them to the "artists" dictionary in [scraper.py] (https://github.com/MaximoMoyer/personal_website) and write a function in the style of every other scraper. This style is that 
   
 1) Function is named "{Artist's key in dictionary}" (i.e. Banksy) + "_Scraper"
@@ -64,18 +64,23 @@ Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) in
 
 # File Explanations and design decisions:
 
-  ### app.py: Runs the web application. Built to be statelss and used the session "uid" and "skip_uid" to handle this
+  ### app.py:
+  Runs the web application. Built to be statelss and used the session "uid" and "skip_uid" to handle this
   
-  ### Profile_Generation.py: Class that acts as a wrapper around all profile generation tasks:
+  ### Profile_Generation.py: 
+  Class that acts as a wrapper around all profile generation tasks:
      - Generates artist embeddings
      - Gets the artist most similair to the prompt
      - Gets the image to be shown to the user
   
-  ### Joint_Model.py: Class that embeds both the photos from the artists and the prompt using the OpenAI CLIP model. Created as a class because it loads in a       model, so is somone choses to "create a new profile" you mustn't load the clip model in twice.
+  ### Joint_Model.py: 
+  Class that embeds both the photos from the artists and the prompt using the OpenAI CLIP model. Created as a class because it loads in a       model, so is somone choses to "create a new profile" you mustn't load the clip model in twice.
   
-  ### Image_Model.py: File with a function to call the Stability AI diffucion model. Created as a file because it has a single function with not need to store a     model or any information in class variables. 
+  ### Image_Model.py: 
+  File with a function to call the Stability AI diffucion model. Created as a file because it has a single function with not need to store a     model or any information in class variables. 
 
-  ### HTML, CSS, and JS files: All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility (most notably in the html).
+  ### HTML, CSS, and JS files: 
+  All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility (most notably in the html).
 
 
   
