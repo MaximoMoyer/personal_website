@@ -10,7 +10,7 @@ def produce_image(prompt,sess_id):
     api_host = "https://api.stability.ai"
     url = f'{api_host}/v1/user/account'
     # REMOVED WHEN PUSHED TO GITHUB. IF YOU WANT TO RUN LOCALLY WILL NEED THIS.
-    api_key = 'sk-RfqssbMglz2dGix49v8qKomcAzv41p6a0J1SAuNqAlU5gvjx'
+    api_key = ''
     engine_id = "stable-diffusion-v1-5"
 
     # provides the API with the prompt.
