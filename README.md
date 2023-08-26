@@ -18,11 +18,16 @@ StabilityAI
 
 # Cool Features/Functionality
 
-### Adding Artist
-To add an artist to the database, all you must do is add them to the "artists" dictionary in [scraper.py] (https://github.com/MaximoMoyer/personal_website) and write a function in the style of every other scraper. This style is that 
+  ### Adding Artist
+  To add an artist to the database, all you must do is add them to the "artists" dictionary in [scraper.py] (https://github.com/MaximoMoyer/personal_website) and write a function in the style of every other   scraper. This style is that 
+  
+  1) Function is named "{Artist's key in dictionary}" (i.e. Banksy) + "_Scraper"
+  2) Fuction takes in a variable called "url"
+  
+  ### Scraping only when needed
+  The application is built to check if embeddings exist for each artist in the artist dictionary. If they do not exist, the application then checks if there are enough paintings of the artist to create        a representative average embedding. If there are not enough emebeddings, only then are the websites scrapped to gather the photos of the artists. I've uploaded the embeddings of the artists for              convenience, but i
 
-1) Function is named "{Artist's key in dictionary}" (i.e. Banksy) + "_Scraper"
-2) Fuction takes in a variable called "url"
+  
 
 # Local hosting:
 Go to [StabilityAI](https://platform.stability.ai/docs/api-reference) to get an api key. Fill in the api_key variable in line 13 in [Imagel_model.py](https://github.com/MaximoMoyer/personal_website/blob/main/Image_Model.py#L13). 
