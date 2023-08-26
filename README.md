@@ -20,7 +20,7 @@ they will be shown an image of "a graffiti gorilla" in the style of Banksy (a fa
 # Cool Features/Functionality
 
   ### Adding Artists
-To add an artist to the database, all you must do is add them to the "artists" dictionary in [scraper.py] (https://github.com/MaximoMoyer/personal_website) and write a function in the style of every other scraper. This style is that 
+To add an artist to the database, all you must do is add them to the "artists" dictionary in [scraper.py] (https://github.com/MaximoMoyer/personal_website/blob/main/Scraper.py#L11) and write a function in the style of every other scraper. This style is that 
   
 1) Function is named "{Artist's key in dictionary}" (i.e. Banksy) + "_Scraper"
 2) Fuction takes in a variable called "url"
