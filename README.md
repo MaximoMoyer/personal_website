@@ -16,6 +16,7 @@ they will be shown an image of "a graffiti gorilla" in the style of Banksy (a fa
 - OpenAI (embeddings)
 - StabilityAI (image creation)
 - Webflow (V1 Bone structure of site and animation on loading page)
+- Python anywhere (hosting service)
 
 # Cool Features/Functionality
 
