@@ -17,10 +17,10 @@ OpenAI
 StabilityAI
 
 # How to run the app:
-'''
+'
 testing
-asdfakl;sjdf
-'''
+asdfaklsjdf
+'
 
 
 # File explanations and design decisions:
