@@ -17,10 +17,15 @@ OpenAI
 StabilityAI
 
 # How to run the app:
-'
+`
 testing
 asdfaklsjdf
 '
+
+```
+slakdjflaskd ja
+asdfasdf
+```
 
 
 # File explanations and design decisions:
