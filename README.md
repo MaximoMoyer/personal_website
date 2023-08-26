@@ -1,6 +1,6 @@
 # Summary:
 
-[Maximomoyer.com](maximomoyer.com) is a live web app wrapped around OpenAI's CLIP mode and StabilityAI's stable diffusion model.
+[Maximomoyer.com](maximomoyer.com) is a live web app wrapped around OpenAI's CLIP model and StabilityAI's stable diffusion model.
 
 The novel functionality of the website is that it takes in a prompt from the user, and produces an image of that prompt in the style of a famous artist whose paintings are closet to the described prompt. For example, if the user inputs "a graffiti gorilla" 
 
@@ -17,7 +17,10 @@ OpenAI
 StabilityAI
 
 # How to run the app:
-TBD
+'''
+testing
+asdfakl;sjdf
+'''
 
 
 # File explanations and design decisions:
