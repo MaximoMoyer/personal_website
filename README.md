@@ -16,15 +16,26 @@ bs4
 OpenAI
 StabilityAI
 
-# How to run the app:
-`
-testing
-`
+# Local hosting:
+Go to [StabilityAI](https://platform.stability.ai/docs/api-reference) to get an api key. Fill in the api_key variable in line 13 in [Imagel_model.py](https://github.com/MaximoMoyer/personal_website/blob/main/Image_Model.py#L13). 
+
+Requirements Setup:
+In a terminal with venv installed (if venv is not installed can use `pip install venv`.) and python at least at version 3.0 run
 
 ```
-slakdjflaskd ja
-asdfasdf
+python -m venv my_env
+source my_env/bin/activate
+pip install -r requirements.txt
 ```
+
+Running WebApp:
+'''
+python app.py
+'''
+
+View WebApp:
+Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) into a browser.
+
 
 
 # File explanations and design decisions:
