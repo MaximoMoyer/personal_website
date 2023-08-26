@@ -29,9 +29,9 @@ pip install -r requirements.txt
 ```
 
 Running WebApp:
-'''
+```
 python app.py
-'''
+```
 
 View WebApp:
 Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) into a browser.
