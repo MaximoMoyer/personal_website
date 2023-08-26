@@ -19,8 +19,7 @@ StabilityAI
 # How to run the app:
 `
 testing
-asdfaklsjdf
-'
+`
 
 ```
 slakdjflaskd ja
