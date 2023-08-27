@@ -35,7 +35,7 @@ def produce_image(prompt,sess_id):
             "height": 512,
             "width": 512,
             "samples": 1,
-            "steps": 30,
+            "steps": 50,
         },
     )
     #returnings the status code in english for readability
