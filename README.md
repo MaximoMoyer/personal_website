@@ -2,7 +2,7 @@
 
 [Maximomoyer.com](maximomoyer.com) is a live web app wrapped around OpenAI's CLIP model and StabilityAI's stable diffusion model.
 
-Please note, there are some bugs being fixed on the version accessible over the internet. locally, there are no known bugs.
+Please note, there are some bugs being fixed on the version accessible over the internet. Locally, there are no known bugs.
 
 The novel functionality of the website is around "prompt engineering". It takes in a prompt from the user, finds the artist who has created paintings most similiar to that prompt. It then edits the prompt to produce an image of the passed in prompt in the style of the matched artist. For example, if the user inputs "a graffiti gorilla" 
 
