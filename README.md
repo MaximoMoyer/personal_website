@@ -34,6 +34,9 @@ The application is built to check if embeddings exist for each artist in the art
 
   ### Handles bad prompts
   This was simple becaue of Stability's API. If you pass in a bad prompt, or try and skip to navigate to a page without giving the image time to load, or ever providing a prompt in the first place, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
+
+  ### Learned how to do a redirect
+  This was for the actual website. It allows maximomoyer.com to point to the website I have hosted at maximomoyer.pythonanywhere.com (using this URL saved me a monthly subscription charge :) ) 
   
 # Models
 
