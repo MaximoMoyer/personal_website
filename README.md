@@ -62,14 +62,14 @@ It is easy to find an off the shelf model that can take texts and produce an ima
   
 - Steps: Toggles the quality of the image vs. the step of output.
 
-My understanding [(one resource I found really helpful)](http://jalammar.github.io/illustrated-stable-diffusion/) is there are three core components of the stable diffusion network
-1) Text embedding network
-2) A pretrained network ("U-Net") that is trained to predict how much noise is in latent information of an image given a corresponding prompt embedding
-3) A autoencoder/decoder that produces images.
-
-Stable diffusion pases the embedding prompt, alongside totally random latent "image" information (if this image were decoded it would just be fuzz). The "U-Net" mechanism then predicts how much noise is in this latent representation, subtracts it from the latent space, and repeats this process **Steps** number of times. 
-
-The higher the steps the longer the process takes and the more accurate the image gets. 
+    My understanding [(one resource I found really helpful)](http://jalammar.github.io/illustrated-stable-diffusion/) is there are three core components of the      stable diffusion network
+    1) Text embedding network
+    2) A pretrained network ("U-Net") that is trained to predict how much noise is in latent information of an image given a corresponding prompt embedding
+    3) A autoencoder/decoder that produces images.
+    
+    Stable diffusion pases the embedding prompt, alongside totally random latent "image" information (if this image were decoded it would just be fuzz). The "U-     Net" mechanism then predicts how much noise is in this latent representation, subtracts it from the latent space, and repeats this process **Steps** number      of times. 
+    
+    The higher the steps the longer the process takes and the more accurate the image gets. 
 
 - Clip_guidance_preset: It was tough to find a detailed explanation on this one. But it seems, this uses the CLIP model discussed above to guide the model as it goes through the difussion steps. It likely does so by comparing the latent image to the prompt at various steps (using the CLIP model) and altering the image to be a closer match to the prompt. In practice this variable seemed to have a similair affect to steps in that different inputs traded off quality for production speed.
 
