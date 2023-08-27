@@ -35,7 +35,45 @@ The application is built to check if embeddings exist for each artist in the art
   ### Handles bad prompts
   If you pass in a bad prompt, or try and skip to navigate to a page without giving the image time to load, or ever providing a prompt in the first place, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
   
+# Models
 
+## OpenAI CLIP model
+
+This model embeds images and text into the same space. Though there were research papers discussing the idea, it was suprisinlgy hard for me to find off the shelf models that did this (maybe I was not searching well :) ).  But, I was able to find a [paper](https://arxiv.org/pdf/2103.00020.pdf) from OPEN AI that used jointly trained image and text embedding models to build an optimal _image_ classifcaiton model. This is a fairly novel approach becuase
+
+Typically image recnogition models: 
+- Train some sort of a feature extractor (CNN is a common example)
+- Then uses a linear classifer to predict a label
+
+But the CLIP model instead:
+- Pre-Trains Text and image encoders jointly by setting the loss functino to quantify how often these two encoders matched the wrong setence to the wrong image.
+- At serving time, given a possible set of labels, the text encoder is fed the words "a photo of" (or some other default) and the image encoder is feed the image to be classified. Then the label that produces the highest probability of a "match" between the image and encoder model is selected as the label.
+
+_In this project I took the pre-trained embedding models and used those_. By embedding text and images, computing how close these embeddings are, and finding a match between an artist and text, I essentially performed the forward pass of the pretraining step (minus loss calculation).
+
+When experimenting with various prompts, and studying the types of paintings that the various artists in the database would paint, qualitatively the model seemed to perform very well in assigning a matching artists and prompts. (See gorilla example at top of Read Me).
+
+
+## Stability's Diffusion model
+
+It is easy to find an off the shelf model that can take texts and produce an image from it. I chose to go with the Stability diffusion model off the shelf models (hugging face) because through qualitative testing it seemed to produce images that were more accurate. And when compared to other paid options (namely open ai's dalle) this api was more configurable and it was slighlty more reasoanbley priced. Stability's model had fields such as:
+
+- CFG scale: Stands for "classifier free guidance". Lets you toggle between "quality of image" vs. "image matching". This is a tricky idea, so as an analogy, a "clown gorilla" that had maximum quality of image, might just be a stunning clear photo of a gorilla. A "clown gorilla" that had maximum "image matching" might have a very blurry gorilla with a red nose and big shoes that looks like it was drawn by someone who has a shakey hand.
+  
+- Steps: Toggles the quality of the image vs. the step of output.
+
+My understanding [(one resource I found really helpful)](http://jalammar.github.io/illustrated-stable-diffusion/) is there are three core components of the stable diffusion network
+1) Text embedding network
+2) A pretrained network ("U-Net") that is trained to predict how much noise is in latent information of an image given a corresponding prompt embedding
+3) A autoencoder/decoder that produces images.
+
+Stable diffusion pases the embedding prompt, alongside totally random latent "image" information (if this image were decoded it would just be fuzz). The "U-Net" mechanism then predicts how much noise is in this latent representation, subtracts it from the latent space, and repeats this process **Steps** number of times. 
+
+The higher the steps the longer the process takes and the more accurate the image gets. 
+
+- Clip_guidance_preset: It was tough to find a detailed explanation on this one. But it seems, this uses the CLIP model discussed above to guide the model as it goes through the difussion steps. It likely does so by comparing the latent image to the prompt at various steps (using the CLIP model) and altering the image to be a closer match to the prompt. In practice this variable seemed to have a similair affect to steps in that different inputs traded off quality for production speed.
+
+I am sad to admit, that after a good amount of experimentation, the defaults suggested for these three variables produced what seemed to be the best tradeoff between speed of production, quality of image, and accuracy of image.
   
 
 # Local hosting:
@@ -82,9 +120,6 @@ Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) in
 
   ### HTML, CSS, and JS files: 
   All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility (most notably in the html).
-
-
-  
 
   
 
