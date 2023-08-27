@@ -101,7 +101,7 @@ Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) in
 
 
 
-# File Explanations and design decisions:
+# File Explanations and Design Decisions:
 
   ### app.py:
   Runs the web application. Built to be statelss and used the session "uid" and "skip_uid" to handle this
