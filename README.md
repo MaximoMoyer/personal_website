@@ -2,7 +2,7 @@
 
 [Maximomoyer.com](maximomoyer.com) is a live web app wrapped around OpenAI's CLIP model and StabilityAI's stable diffusion model.
 
-The novel functionality of the website is that it takes in a prompt from the user, and produces an image of that prompt in the style of a famous artist whose paintings are closet to the described prompt. For example, if the user inputs "a graffiti gorilla" 
+The novel functionality of the website is around "prompt engineering". It takes in a prompt from the user, finds the artist who has created paintings most similiar to that prompt. It then edits the prompt to produce an image of the passed in prompt in the style of the matched artist. For example, if the user inputs "a graffiti gorilla" 
 
 <img width="1437" alt="Screen Shot 2023-08-21 at 8 07 12 PM" src="https://github.com/MaximoMoyer/personal_website/assets/41522480/b0876a2d-c966-4441-bd5e-8518e5c38b3b">
 
@@ -46,32 +46,32 @@ Typically image recnogition models:
 - Then uses a linear classifer to predict a label
 
 But the CLIP model instead:
-- Pre-Trains Text and image encoders jointly by setting the loss functino to quantify how often these two encoders matched the wrong setence to the wrong image.
-- At serving time, given a possible set of labels, the text encoder is fed the words "a photo of" (or some other default) and the image encoder is feed the image to be classified. Then the label that produces the highest probability of a "match" between the image and encoder model is selected as the label.
+- Pre-Trains Text and image encoders jointly by setting the loss function to quantify how well these two encoders created embeddings that were simialir between  imag/prompt pairs.
+- At serving time, given a possible set of labels, the text encoder is fed some default wording such as "a photo of" (could be blank) and the image encoder is feed the image to be classified. Then the label that produces the highest probability of a "match" between the image and encoder model is selected as the label.
 
 _In this project I took the pre-trained embedding models and used those_. By embedding text and images, computing how close these embeddings are, and finding a match between an artist and text, I essentially performed the forward pass of the pretraining step (minus loss calculation).
 
-When experimenting with various prompts, and studying the types of paintings that the various artists in the database would paint, qualitatively the model seemed to perform very well in assigning a matching artists and prompts. (See gorilla example at top of Read Me).
+When experimenting with various prompts, and studying the types of paintings that the various artists in the database would paint, qualitatively the model seemed to perform very well in matching artists and prompts. (See gorilla example at top of Read Me).
 
 
 ## Stability's Diffusion model
 
-It is easy to find an off the shelf model that can take texts and produce an image from it. I chose to go with the Stability diffusion model off the shelf models (hugging face) because through qualitative testing it seemed to produce images that were more accurate. And when compared to other paid options (namely open ai's dalle) this api was more configurable and it was slighlty more reasoanbley priced. Stability's model had fields such as:
+It is easy to find an off the shelf model that can take texts and produce an image from it. I chose to go with the Stability diffusion model vs. off the shelf models (hugging face) because through qualitative testing it seemed to produce images that were more accurate. And when compared to other paid options (namely open ai's dalle) this api was more configurable and it was slighlty more reasoanbley priced. Stability's model had fields such as:
 
-- CFG scale: Stands for "classifier free guidance". Lets you toggle between "quality of image" vs. "image matching". This is a tricky idea, so as an analogy, a "clown gorilla" that had maximum quality of image, might just be a stunning clear photo of a gorilla. A "clown gorilla" that had maximum "image matching" might have a very blurry gorilla with a red nose and big shoes that looks like it was drawn by someone who has a shakey hand.
+- CFG scale: Stands for "classifier free guidance". Lets you toggle between "quality of image" vs. "image matching". This is a tricky idea, so I'll use an analogy. A "clown gorilla" that had maximum quality of image might just be a stunning clear photo of a monkey. A "clown gorilla" that had maximum "image matching" might have a very blurry gorilla with a red nose and big shoes that looks like it was drawn by someone who has a shakey hand.
   
-- Steps: Toggles the quality of the image vs. the step of output.
+- Steps: Toggles the quality of the image vs. the number of diffusion steps.
 
     My understanding [(one resource I found really helpful)](http://jalammar.github.io/illustrated-stable-diffusion/) is there are three core components of the      stable diffusion network
     1) Text embedding network
     2) A pretrained network ("U-Net") that is trained to predict how much noise is in latent information of an image given a corresponding prompt embedding
     3) A autoencoder/decoder that produces images.
     
-    Stable diffusion pases the embedding prompt, alongside totally random latent "image" information (if this image were decoded it would just be fuzz). The "U-     Net" mechanism then predicts how much noise is in this latent representation, subtracts it from the latent space, and repeats this process **Steps** number      of times. 
+    Stable diffusion pases the embedding prompt, alongside totally random latent "image" information (if this image were decoded it would just be fuzz). The "U-     Net" mechanism then predicts how much noise is in this latent representation, subtracts it from the latent space, and repeats this process **Steps** number      of times. After all steps, the diffused latent image information is passed through the encoder/decoder
     
     The higher the steps the longer the process takes and the more accurate the image gets. 
 
-- Clip_guidance_preset: It was tough to find a detailed explanation on this one. But it seems, this uses the CLIP model discussed above to guide the model as it goes through the difussion steps. It likely does so by comparing the latent image to the prompt at various steps (using the CLIP model) and altering the image to be a closer match to the prompt. In practice this variable seemed to have a similair affect to steps in that different inputs traded off quality for production speed.
+- Clip_guidance_preset: It was tough to find a detailed explanation on this one. But it seems this uses the CLIP model discussed above to guide the model as it goes through the difussion steps. It likely does so by comparing the latent image to the prompt at various steps (using the CLIP model) and somehow altering the image to be a closer match to the prompt. In practice this variable seemed to have a similair affect to steps in that different inputs traded off quality for production speed.
 
 I am sad to admit, that after a good amount of experimentation, the defaults suggested for these three variables produced what seemed to be the best tradeoff between speed of production, quality of image, and accuracy of image.
   
@@ -122,8 +122,12 @@ Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) in
   All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility (most notably in the html).
 
   
-
-  
+# Next Steps:
+- Experiment with [Facebook's new joint embedding model](https://github.com/facebookresearch/ImageBind)
+- Set up AWS hosting
+- Set up Docker hosting
+- Experiment with style transfer networks rather than prompt engineering (produce image using passed in prompt, then overlay style of an artist using separate     network)
+- Experiment with displaying multiple images produced in different ways and allowing the user to select their favorite
   
 
   
