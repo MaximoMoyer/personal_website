@@ -8,7 +8,6 @@ import logging
 
 def produce_image(prompt,sess_id):
     api_host = "https://api.stability.ai"
-    url = f'{api_host}/v1/user/account'
     # REMOVED WHEN PUSHED TO GITHUB. IF YOU WANT TO RUN LOCALLY WILL NEED THIS.
     api_key = ''
     engine_id = "stable-diffusion-v1-5"
