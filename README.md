@@ -33,7 +33,7 @@ The application is built to check if embeddings exist for each artist in the art
   This application was built to be super efficient in storage. Everytime someone generates a new profile their previous profile image is removed. Whenever someone leaves a site, their profile image is removed. This might sound basic but was tricky! Things would get hairy when dealing with edge cases such as implementing the "loading is taking too long" button, handling users using the browser arrows to go forward or backward in pages, and users iterating rapidly through various pages.
 
   ### Handles bad prompts
-  If you pass in a bad prompt, or try and skip to navigate to a page without giving the image time to load, or ever providing a prompt in the first place, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
+  This was simple becaue of Stability's API. If you pass in a bad prompt, or try and skip to navigate to a page without giving the image time to load, or ever providing a prompt in the first place, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
   
 # Models
 
