@@ -31,11 +31,11 @@ To add an artist to the database, all you must do is add them to the "artists" d
   ### Scraping only when needed
 The application is built to check if embeddings exist for each artist in the artist dictionary. If they do not exist, the application then checks if there are enough paintings of the artist to create a representative average embedding. If there are not enough emebeddings, only then are the websites scrapped to gather the photos of the artists. I've uploaded the embeddings of the artists for convenience, but you can delete the whole artist folder, the whole embedding folder, or indivudal embeddings to see this work.
 
-  ### Efficient storage
-  This application was built to be super efficient in storage. Everytime someone generates a new profile their previous profile image is removed. Whenever someone leaves a site, their profile image is removed. This might sound basic but was tricky! Things would get hairy when dealing with edge cases such as implementing the "loading is taking too long" button, handling users using the browser arrows to go forward or backward in pages, and users iterating rapidly through various pages.
+  ### No wasted storage
+  This application was built to waste no storage space (to keep my hosting bill low). Everytime someone generates a new profile their previous profile image is removed. Whenever someone leaves a site, their profile image is removed. This might sound basic but it was slightly tricky! Things would get hairy when dealing with edge cases such as implementing the "loading is taking too long" button, handling users using the browser arrows to go forward or backward in pages, and users iterating rapidly through various pages.
 
-  ### Handles bad prompts
-  This was simple becaue of Stability's API. If you pass in a bad prompt, or try and skip to navigate to a page without giving the image time to load, or ever providing a prompt in the first place, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
+  ### Handles innapropriate prompts and skipping the image generation step
+  Innapropriate prompts were simple to handle becaue Stability's API checks for them and returns a corresponding error code. Handling skipping the loading of an image, navigating directly to a page (without entering a prompt), or using the back/forward arrows on the browser were more challenging to handle. But in any of these cases, instead of a customized image, you will receieve a Toucan, and it will be explained to you why you receieved a toucan.
 
   ### Redirect
   This was for the actual website. This redirect points maximomoyer.com to the maximomoyer.pythonanywhere.com which then points to the actual content (using this python anywhere URL saved me a monthly subscription charge :) ) 
@@ -124,7 +124,7 @@ Copy and paste http://127.0.0.1:5000 (or whatever your local host address is) in
   File with a function to call the Stability AI diffucion model. Created as a file because it has a single function with not need to store a     model or any information in class variables. 
 
   ### HTML, CSS, and JS files: 
-  All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility (most notably in the html).
+  All these files are named intuitively. Used webflow to handle initial bone structure of the website and create the entire animation on the loading page. The files that were exact copies from webflow code have webflow in their name. All other files have intuitive design decisions made that priotized easy styling, effective navigation between pages, handling edgecase user behavior, and readbility.
 
   
 # Next Steps:
