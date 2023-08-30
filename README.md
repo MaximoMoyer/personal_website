@@ -12,6 +12,8 @@ they will be shown an image of "a graffiti gorilla" in the style of Banksy (a fa
 
 <img width="1440" alt="Screen Shot 2023-08-21 at 8 07 27 PM" src="https://github.com/MaximoMoyer/personal_website/assets/41522480/16649423-963b-4fdb-8f99-95449b12c01e">
 
+Please note that Banksy is most frequently returned as the artists, likely due to the more modern character of his art. However, if you use prompts specific to other artists like a "a royal women in a red dress" for Lebrun, "A swirling landscape" for Picasso you will have other styles of paintings appear.
+
 # Stack:
 - Flask (web app)
 - bs4 (scraping)
