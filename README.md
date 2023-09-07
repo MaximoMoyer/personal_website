@@ -1,6 +1,6 @@
 # Summary:
 
-[Maximomoyer.com](https://maximomoyer.pythonanywhere.com) is a live web app wrapped around OpenAI's CLIP model and StabilityAI's stable diffusion model.
+Maximomoyer.com is a live hosted web app wrapped around OpenAI's CLIP model and StabilityAI's stable diffusion model.
 
 Please note, there are some bugs being fixed on the version accessible over the internet. Locally, there are no known bugs.
 
